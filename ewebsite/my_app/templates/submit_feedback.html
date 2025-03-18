@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="product-form-wrapper">
+        <h2 class="text-center" style="font-weight: 900;"><span>Submit</span> Product</h2>
+
+        {% if messages %}
+        <div class="messages mb-4">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="product-form">
+            {% csrf_token %}
+
+            <!-- Display any non-field errors -->
+            {{ form.non_field_errors }}
+
+            <!-- Loop through each form field -->
+            {% for field in form %}
+            <div class="form-group mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                
+                <!-- Render the form field with proper styling -->
+                {{ field }}
+
+                <!-- Show errors related to the field -->
+                {% if field.errors %}
+                <div class="text-danger mt-2">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+
+                <!-- Field help text -->
+                {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <!-- Submit button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+            </div>
+            <div class="text-center">
+                <a href="{% url 'home' %}" class="btn btn-success w-100" style="margin-top: 10px;">Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .product-form-wrapper {
+        max-width: 700px;
+        margin: auto;
+        margin-top: -10px;
+        padding: 10px;
+        background: transparent;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .product-form .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .product-form .form-label {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .product-form input,
+    .product-form textarea,
+    .product-form select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    .product-form input:focus,
+    .product-form textarea:focus,
+    .product-form select:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .messages {
+        margin-bottom: 20px;
+    }
+
+    .alert {
+        border-radius: 8px;
+    }
+
+    .error {
+        color: #dc3545;
+        font-size: 0.875rem;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Feedbacks for Your Products</h2>
+
+{% if feedbacks %}
+    <ul>
+            <li>
+                <strong>Product:</strong> {{ feedback.product.name }} <br>
+                <strong>From:</strong> {{ feedback.user.username }} <br>
+                <strong>Rating:</strong> {{ feedback.rating }}/5 <br>
+                <strong>Comment:</strong> {{ feedback.comment }} <br>
+                <strong>Submitted on:</strong> {{ feedback.created_at|date:"F d, Y H:i" }} <br>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No feedbacks yet.</p>
+{% endif %}
+
+{% endblock %}

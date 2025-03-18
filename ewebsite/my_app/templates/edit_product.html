@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}  <!-- ✅ Ensure this is here -->
+
+{% block content %}
+<h2 style="text-align: center; font-weight: 900;"><span>Edit</span> Product</h2>
+<div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Update Product</h4>
+          </div>
+          <div class="card-body p-4">
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ product.name }}" required>
+                        <div class="invalid-feedback">
+                            Please enter a product name.
+                        </div>
+                    </div>
+                </div>
+  
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="price" name="price" value="{{ product.price }}" step="0.01" min="0" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid price.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="{{ product.quantity }}" min="0" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid quantity.
+                        </div>
+                    </div>
+                </div>
+  
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="category" name="category" value="{{ product.category }}" required>
+                        <div class="invalid-feedback">
+                            Please enter a category.
+                        </div>
+                    </div>
+                </div>
+  
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button type="submit" class="btn btn-primary px-4">Update Product</button>               
+                    <a href="{% url 'seller' %}" class="btn btn-success">Back to Seller Dashboard</a>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'scripts/design.js' %}"></script>
+<script src="{% static 'scripts/getProd.js' %}"></script>
+<script src="{% static 'scripts/addingProd.js' %}"></script>
+<script src="{% static 'scripts/script.js' %}"></script>
+{% endblock %}
