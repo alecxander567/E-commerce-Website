@@ -11,40 +11,38 @@
 </head>
 <body>
 
-  <section class="container-fluid" style="box-shadow: 0 0 10px; height: 110vh;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<section class="container-fluid" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); min-height: 100vh; max-height: 90vh; max-width: 100%; margin: auto; position: relative;">
+    <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <span><strong>E-Commerce Website</strong></span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <a class="navbar-brand"><strong><span>E-Commerce Website</span></strong></a>
         </div>
     </nav>
 
-    <div class="container" style="width: 650px; position: relative; left: -250px; top: 150px;">
-        <h1 style="font-weight: 900; font-size: 50px;">
-            An <span>E-Commerce Website</span> using Django
-        </h1>
-        <p>Buy and sell products in a more efficient way</p>
-        <div class="container md-3 py-3" style="display: flex; gap: 10px;">
-            <button type="button" class="btn btn-dark log-in">Log in as Buyer</button>
-            <button type="button" class="btn btn-outline-dark seller-login">Log in as Seller</button>
-        </div>
-    </div>
+<div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between"
+    style="max-width: 1000px; margin-top: 150px;">
+   
+   <!-- Left Side: Text Content -->
+   <div class="text-center text-lg-start" style="flex: 1;">
+       <h1 style="font-weight: 900; font-size: 50px;">
+           An <span>E-Commerce Website</span> using Django
+       </h1>
+       <p>Buy and sell products in a more efficient way</p>
+       
+       <div class="d-flex flex-column flex-sm-row gap-2">
+           <button type="button" class="btn btn-dark log-in">Log in as Buyer</button>
+           <button type="button" class="btn btn-outline-dark seller-login">Log in as Seller</button>
+       </div>
+   </div>
 
-    <i class="bi bi-cart-check gradient-icon"
-        style="font-size: 20rem; position: absolute; right: 200px; top: 50px;" fill="url(#grad1)">
-    </i>
+   <!-- Right Side: Large Icon with Proper Spacing -->
+   <div class="d-none d-lg-flex justify-content-center align-items-center" style="flex: 0.5;">
+       <i class="bi bi-cart-check gradient-icon" 
+          style="font-size: 15rem; color: black; margin-top: 60px;">
+       </i>
+   </div>
+</div>
 </section>
+
 <section class="container-fluid" style="height: 100vh; box-shadow: 0 0 10px white;">
   <div class="container py-4">
       <h1 class="text-center fw-bold">Our <span>Services</span></h1>
@@ -93,48 +91,67 @@
       <p class="mb-0">&copy; 2024 My Website | All Rights Reserved</p>
   </footer>
 </section>
+
+
+<!--Log in for Buyers-->
 <form method="post" class="container-fluid" id="form" action="{% url 'landingpage' %}"
-      style="margin: auto; justify-content: center; align-items: center; padding: 30px; background: white; 
-      border-radius: 10px; height: auto; width: 50%; box-shadow: 0 0 5px; display: none; position: absolute; top: 80px; left: 285px;">  
+      style="margin: auto; padding: 30px; background: white; border-radius: 10px; 
+      height: auto; width: 90%; max-width: 700px; box-shadow: 0 0 5px; 
+      display: none; position: absolute; top: 50%; left: 50%; 
+      transform: translate(-50%, -50%);">
+
     {% csrf_token %}
+    
     <div style="display: flex; align-items: center; justify-content: space-between;">
-      <h5 style="font-weight: 900; margin: 0;"><span>Welcome!</span> Please log in or sign up.</h5>
-      <button class="btn btn-secondary close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-          </svg>
-      </button>
+        <h5 style="font-weight: 900; margin: 0;"><span>Welcome!</span> Please log in or sign up.</h5>
+        <button class="btn btn-secondary close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+        </button>
     </div>
+    
     <hr>
+    
     <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-              <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-          </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
         </span>
-      <input type="text" class="form-control" name="username" placeholder="Username" required>
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
     </div>  
     <br>
+    
     <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-              <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
             </svg>
         </span>
         <input type="password" class="form-control" name="password" placeholder="Password" required>
     </div> 
     <br>
+    
     <button type="submit" class="btn btn-dark" style="width: 100%;">Log in</button>  
     <hr>
+    
     <p style="text-align: center;">Don't have an account?</p>
     <br>  
     <button class="btn btn-outline-success signup-btn" style="width: 100%;">Sign-up</button>
 </form>
+
+
+
+<!--Sign up for Buyer-->
 <form method="post" class="container-fluid" id="sign-up" action="{% url 'sign_up' %}"
-    style="margin: auto; justify-content: center; align-items: center; padding: 30px; background: white; 
-    border-radius: 10px; height: auto; width: 50%; box-shadow: 0 0 5px; display: none; position: absolute; top: 80px; left: 285px;">  
+    style="margin: auto; padding: 30px; background: white; border-radius: 10px; height: auto; width: 90%; 
+    max-width: 700px; box-shadow: 0 0 5px; display: none; position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%);">
+    
     {% csrf_token %}
+    
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <h5 style="font-weight: 900; margin: 0;"><span>Create</span> an Account</h5>
         <button type="button" class="btn btn-secondary close-sign-up">
@@ -144,6 +161,7 @@
         </button>
     </div>
     <hr>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -154,6 +172,7 @@
         <input type="text" class="form-control" name="username" placeholder="Username" required>
     </div>  
     <br>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -163,6 +182,7 @@
         <input type="email" class="form-control" name="email" placeholder="Email" required>
     </div>  
     <br>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -172,6 +192,7 @@
         <input type="password" class="form-control" name="password1" placeholder="Password" required>
     </div> 
     <br>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -181,63 +202,102 @@
         <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
     </div> 
     <br>
+
     <button type="submit" class="btn btn-dark" style="width: 100%;">Sign Up</button>  
     <hr>
     <p style="text-align: center;">Already have an account?</p>
     <br>  
     <a href="{% url 'landingpage' %}" class="btn btn-outline-primary" style="width: 100%;">Log In</a>
 </form>
-<form method="post" class="container-fluid" id="seller-login" action="{% url 'login_seller' %}"
-      style="margin: auto; justify-content: center; align-items: center; padding: 30px; background: white; 
-      border-radius: 10px; height: auto; width: 50%; box-shadow: 0 0 5px; display: none; position: absolute; top: 80px; left: 285px;">  
-    {% csrf_token %}
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-      <h5 style="font-weight: 900; margin: 0;"><span>Welcome Seller!</span> Please log in or sign up.</h5>
-      <button class="btn btn-secondary close-seller-login">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-          </svg>
-      </button>
-    </div>
-    <hr>
-    <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-              <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-          </svg>
-        </span>
-      <input type="text" class="form-control" name="username" placeholder="Username" required>
-    </div>  
-    <br>
-    <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-              <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
-            </svg>
-        </span>
-        <input type="password" class="form-control" name="password" placeholder="Password" required>
-    </div> 
-    <br>
-    <button type="submit" class="btn btn-dark" style="width: 100%;">Log in</button>  
-    <hr>
-    <p style="text-align: center;">Don't have an account?</p>
-    <br>  
-    <button class="btn btn-outline-success signup-seller-btn" style="width: 100%;">Sign-up</button>
+
+
+
+<!--Seller Log in Form-->
+<form method="post" class="container-fluid" id="seller-login" 
+action="{% url 'login_seller' %}" 
+style="margin: auto; padding: 30px; background: white; border-radius: 10px; 
+height: auto; width: 90%; max-width: 700px; box-shadow: 0 0 5px; 
+display: none; position: absolute; top: 50%; left: 50%; 
+transform: translate(-50%, -50%);">
+
+{% csrf_token %}
+
+<!-- Header Section -->
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <h5 style="font-weight: 900; margin: 0;">
+      <span>Welcome Seller!</span> Please log in or sign up.
+  </h5>
+  <button class="btn btn-secondary close-seller-login">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" 
+           class="bi bi-x-lg" viewBox="0 0 16 16">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+      </svg>
+  </button>
+</div>
+
+<hr>
+
+<!-- Username Input -->
+<div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+           class="bi bi-person-check-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+          <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+      </svg>
+  </span>
+  <input type="text" class="form-control" name="username" placeholder="Username" required>
+</div>
+
+<br>
+
+<!-- Password Input -->
+<div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+           class="bi bi-lock-fill" viewBox="0 0 16 16">
+          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+      </svg>
+  </span>
+  <input type="password" class="form-control" name="password" placeholder="Password" required>
+</div>
+
+<br>
+
+<!-- Login Button -->
+<button type="submit" class="btn btn-dark" style="width: 100%;">Log in</button>
+
+<hr>
+
+<!-- Sign-up Section -->
+<p style="text-align: center;">Don't have an account?</p>
+<br>
+<button class="btn btn-outline-success signup-seller-btn" style="width: 100%;">Sign-up</button>
+
 </form>
+
+
+
+<!--Seller Sign up Form-->
 <form method="post" class="container-fluid" id="signup-as-seller" action="{% url 'register_seller' %}"
-    style="margin: auto; justify-content: center; align-items: center; padding: 30px; background: white; 
-    border-radius: 10px; height: auto; width: 50%; box-shadow: 0 0 5px; display: none; position: absolute; top: 80px; left: 285px;">  
+    style="margin: auto; padding: 30px; background: white; border-radius: 10px; 
+    height: auto; width: 90%; max-width: 700px; box-shadow: 0 0 5px; 
+    display: none; position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%);">
+    
     {% csrf_token %}
+    
     <div style="display: flex; align-items: center; justify-content: space-between;">
-        <h5 style="font-weight: 900; margin: 0;"><span>Create a seller</span> Account</h5>
+        <h5 style="font-weight: 900; margin: 0;">Create a Seller Account</h5>
         <button type="button" class="btn btn-secondary close-signup-seller">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
             </svg>
         </button>
     </div>
+    
     <hr>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -247,7 +307,9 @@
         </span>
         <input type="text" class="form-control" name="username" placeholder="Username" required>
     </div>  
+
     <br>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -256,7 +318,9 @@
         </span>
         <input type="email" class="form-control" name="email" placeholder="Email" required>
     </div>  
+
     <br>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -265,7 +329,9 @@
         </span>
         <input type="password" class="form-control" name="password1" placeholder="Password" required>
     </div> 
+
     <br>
+
     <div class="input-group flex-nowrap">
         <span class="input-group-text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -274,13 +340,20 @@
         </span>
         <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
     </div> 
+
     <br>
+
     <button type="submit" class="btn btn-dark" style="width: 100%;">Sign Up</button>  
+
     <hr>
+
     <p style="text-align: center;">Already have an account?</p>
     <br>  
+
     <a href="{% url 'login_seller' %}" class="btn btn-outline-primary" style="width: 100%;">Log In</a>
+
 </form>
+
 
 
     {% load static %}
