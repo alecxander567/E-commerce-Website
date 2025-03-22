@@ -13,11 +13,24 @@
         body {
             padding-bottom: 10px;
         }
-        .table-wrapper {
+         .table-wrapper {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            overflow: hidden;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            padding-bottom: 10px;
         }
+        
+        .table {
+            width: 100%;
+            table-layout: auto; /* Allow the table to adjust to its content */
+        }
+        
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        /* The rest of your styles remain unchanged */
         .table thead {
             background-color: #007bff;
             color: white;
