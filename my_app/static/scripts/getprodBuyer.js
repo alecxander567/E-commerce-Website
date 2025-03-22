@@ -19,7 +19,7 @@ function fetchProducts() {
                     <td>${product.category}</td>
                     <td>${product.quantity}</td>
                     <td>
-                        <button class="btn buy-now" onclick="placeOrder('${product.id}', '${product.quantity}')">
+                        <button class="btn buy-now" onclick="placeOrder('${product.id}', '${product.name}', '${product.quantity}', )">
                             Buy Now
                         </button>
                         <button class="btn add-to-cart" onclick="addToCart('${product.name}')">Add to Basket</button>
@@ -33,7 +33,7 @@ function fetchProducts() {
 }
 
 
-function placeOrder(productId) {
+function placeOrder(productId, productName, currentQuantity) {
     fetch('/buy-product/', {
         method: "POST",
         headers: {
@@ -48,9 +48,12 @@ function placeOrder(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            let productList = document.getElementById("product-list");
+            productList.innerHTML = ""; 
+
             alert("✅ Order placed successfully!");
-            fetchOrders();  // Refresh order list
-            location.reload(); 
+            fetchProducts();  // Reload the product list
+            fetchOrders(); 
         } else {
             alert("❌ Error: " + data.error);
         }
@@ -140,7 +143,7 @@ function updateProductQuantity(productName, newQuantity) {
         if (nameCell.textContent.trim() === productName.trim()) {
             let quantityCell = row.children[3]; // 4th column (index 3)
             console.log("✅ Quantity Updated:", quantityCell); // Debugging
-            quantityCell.textContent = newQuantity;
+            quantityCell.textContent = newQuantity >= 0 ? newQuantity : 0;
         }
     });
 }
