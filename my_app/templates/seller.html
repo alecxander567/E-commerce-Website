@@ -32,6 +32,86 @@
         .table-bordered td, .table-bordered th {
             border: 1px solid #ddd;
         }
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        /* The Form container */
+        #formContainer {
+            width: 100%;
+            max-width: 600px; /* Form will be at most 600px wide */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 16px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50%;
+            translate: middle;
+        }
+        
+        /* Media query for screens smaller than 768px */
+        @media (max-width: 768px) {
+            #formContainer {
+                width: 90%; /* Takes up 90% of the screen width on small screens */
+                padding: 12px;
+            }
+        
+            #formContainer h2 {
+                font-size: 1.5rem; /* Smaller title font size */
+            }
+        
+            .form-control {
+                font-size: 0.875rem; /* Smaller font size for input fields */
+            }
+        
+            button[type="submit"] {
+                font-size: 0.875rem; /* Adjust submit button font size */
+            }
+        }
+        
+        /* Media query for screens smaller than 480px */
+        @media (max-width: 480px) {
+            #formContainer {
+                width: 95%; /* Takes up 95% of the screen width on very small screens */
+            }
+        
+            #formContainer h2 {
+                font-size: 1.2rem; /* Further reduce title font size */
+            }
+        
+            .form-control {
+                font-size: 0.8rem; /* Even smaller font size for input fields */
+            }
+        
+            button[type="submit"] {
+                font-size: 0.8rem; /* Further reduce the submit button font size */
+            }
+        }
+        
+        /* Button close for the form */
+        .btn-close {
+            background-color: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Button styles */
+        .btn {
+            padding: 10px 16px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        /* Button hover effect */
+        .btn:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -83,26 +163,27 @@
 </nav>
 
 <div class="container mt-5">
-   <!-- Product Form (Initially Hidden) -->
-   <div id="formContainer" class="position-fixed top-50 start-50 translate-middle p-4 border rounded bg-light shadow-lg" style="width: 600px; display: none;">
-    <button class="btn-close position-absolute top-0 end-0 m-2" onclick="hideForm()"></button>
-    <h2 class="text-center mb-3">Add Product</h2>
-    <form id="productForm" action="{% url 'add_product' %}" method="POST">
-        {% csrf_token %}
-        <div class="mb-3">
-            <input type="text" id="productName" name="name" class="form-control" placeholder="Product Name" required>
-        </div>
-        <div class="mb-3"> 
-            <input type="number" id="productPrice" name="price" class="form-control" placeholder="Price" required>
-        </div>
-        <div class="mb-3">
-            <input type="text" id="productCategory" name="category" class="form-control" placeholder="Category" required>
-        </div>
-        <div class="mb-3">
-            <input type="number" id="productQuantity" name="quantity" class="form-control" placeholder="Quantity" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Add Product</button>
-    </form>
+    <!-- Product Form (Initially Hidden) -->
+    <div id="formContainer" class="position-fixed top-50 start-50 translate-middle p-4 border rounded bg-light shadow-lg" style="display: none;">
+        <button class="btn-close position-absolute top-0 end-0 m-2" onclick="hideForm()"></button>
+        <h2 class="text-center mb-3">Add Product</h2>
+        <form id="productForm" action="{% url 'add_product' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" id="productName" name="name" class="form-control" placeholder="Product Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" id="productPrice" name="price" class="form-control" placeholder="Price" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" id="productCategory" name="category" class="form-control" placeholder="Category" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" id="productQuantity" name="quantity" class="form-control" placeholder="Quantity" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Add Product</button>
+        </form>
+    </div>
 </div>
 
 <div class="container" style="display: inline-flex;">
