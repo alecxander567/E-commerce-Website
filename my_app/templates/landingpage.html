@@ -43,56 +43,57 @@
 </div>
 </section>
 
-<section class="container-fluid" style="height: 100vh; box-shadow: 0 0 10px white;">
-  <div class="container py-4">
-      <h1 class="text-center fw-bold">Our <span>Services</span></h1>
-      <p class="text-center">We make sure our users have the best experience using our app</p>
-      <hr>
-
-      <div class="row justify-content-center align-items-center py-4">
-          <div class="col-md-4 d-flex justify-content-center">
-              <div class="service-box">
-                  <center><i class="bi bi-bag text-success" style="font-size: 7rem;"></i></center>
-                  <h4 class="text-center fw-bold">Easy Shopping</h4>
-                  <p class="text-center">Scroll conveniently through your devices.</p>
-              </div>
-          </div>
-          
-          <div class="col-md-4 d-flex justify-content-center">
-              <div class="service-box">
-                  <center><i class="bi bi-truck" style="font-size: 7rem; color: rgb(54, 51, 255);"></i></center>
-                  <h4 class="text-center fw-bold">Free Delivery</h4>
-                  <p class="text-center">Delivers your package safely and swiftly.</p>
-              </div>
-          </div>
-
-          <div class="col-md-4 d-flex justify-content-center">
-              <div class="service-box">
-                  <center><i class="bi bi-credit-card" style="font-size: 7rem; color: rgb(244, 8, 59);"></i></center>
-                  <h4 class="text-center fw-bold">Easy Payment</h4>
-                  <p class="text-center">Delivers your package safely and swiftly.</p>
-              </div>
-          </div>
-      </div>
-  </div>
+<section class="container-fluid" style="min-height: 70vh; box-shadow: 0 0 10px white;">
+    <div class="container py-4">
+        <h1 class="text-center fw-bold">Our <span>Services</span></h1>
+        <p class="text-center">We make sure our users have the best experience using our app</p>
+        <hr>
+  
+        <div class="row justify-content-center align-items-center py-4">
+            <div class="col-12 col-md-4 d-flex justify-content-center mb-4 mb-md-0">
+                <div class="service-box">
+                    <center><i class="bi bi-bag text-success" style="font-size: 5rem;"></i></center>
+                    <h4 class="text-center fw-bold">Easy Shopping</h4>
+                    <p class="text-center">Scroll conveniently through your devices.</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-4 d-flex justify-content-center mb-4 mb-md-0">
+                <div class="service-box">
+                    <center><i class="bi bi-truck" style="font-size: 5rem; color: rgb(54, 51, 255);"></i></center>
+                    <h4 class="text-center fw-bold">Free Delivery</h4>
+                    <p class="text-center">Delivers your package safely and swiftly.</p>
+                </div>
+            </div>
+  
+            <div class="col-12 col-md-4 d-flex justify-content-center">
+                <div class="service-box">
+                    <center><i class="bi bi-credit-card" style="font-size: 5rem; color: rgb(244, 8, 59);"></i></center>
+                    <h4 class="text-center fw-bold">Easy Payment</h4>
+                    <p class="text-center">Delivers your package safely and swiftly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 <section class="container-fluid d-flex align-items-center" style="height: 30vh; background: rgb(227, 178, 244);">
-  <footer class="container text-dark py-4 text-center">
-      <div class="row justify-content-center">
-          <div class="col-md-4">
-              <h5>Follow Us</h5>
-              <a href="#" class="text-dark mx-2"><i class="bi bi-facebook fs-4"></i></a>
-              <a href="#" class="text-dark mx-2"><i class="bi bi-instagram fs-4"></i></a>
-              <a href="#" class="text-dark mx-2"><i class="bi bi-twitter fs-4"></i></a>
-              <a href="#" class="text-dark mx-2"><i class="bi bi-linkedin fs-4"></i></a>
-          </div>
-      </div>
-      <hr class="bg-light">
-      <p class="mb-0">&copy; 2024 My Website | All Rights Reserved</p>
-  </footer>
-</section>
+    <footer class="container text-dark py-4 text-center">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-dark mx-2"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-dark mx-2"><i class="bi bi-instagram fs-4"></i></a>
+                <a href="#" class="text-dark mx-2"><i class="bi bi-twitter fs-4"></i></a>
+                <a href="#" class="text-dark mx-2"><i class="bi bi-linkedin fs-4"></i></a>
+            </div>
+        </div>
+        <hr class="bg-light">
+        <p class="mb-0">&copy; 2024 My Website | All Rights Reserved</p>
+    </footer>
+  </section>
 
-
+  
 <!--Log in for Buyers-->
 <form method="post" class="container-fluid" id="form" action="{% url 'landingpage' %}"
       style="margin: auto; padding: 30px; background: white; border-radius: 10px; 
@@ -353,7 +354,6 @@ transform: translate(-50%, -50%);">
     <a href="{% url 'login_seller' %}" class="btn btn-outline-primary" style="width: 100%;">Log In</a>
 
 </form>
-
 
 
     {% load static %}
