@@ -113,6 +113,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://e-commerce-website-2-01t8.onrender.com',  # Add your production domain
+    'http://localhost:8000',  # Add localhost if you're testing locally
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
