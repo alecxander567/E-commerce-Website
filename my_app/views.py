@@ -13,7 +13,7 @@ from django.db.models import Sum
 # Landing page (contains the login form)
 def landingpage(request):
     if request.user.is_authenticated:
-        return redirect('/landingpage/')  # Prevents logged-in users from seeing login again
+        return redirect('/home/')  # Prevents logged-in users from seeing login again
 
     login_form = LoginForm()
     signup_form = SignUpForm()
@@ -136,6 +136,7 @@ def buyers_page(request):
 
 
 @csrf_exempt
+@login_required  # Ensure only logged-in users can purchase
 def purchase_product(request):
     if request.method == 'POST':
         try:
@@ -143,13 +144,27 @@ def purchase_product(request):
             product_id = data.get('product_id')
             quantity = int(data.get('quantity', 1))  # Default to 1 if not specified
 
+            # Ensure user is authenticated
+            if not request.user.is_authenticated:
+                return JsonResponse({'success': False, 'error': 'User not authenticated'})
+
             # Get the product
             product = Product.objects.get(id=product_id)
 
             if product.quantity >= quantity:
-                product.quantity -= quantity  # Subtract the purchased quantity
+                # Create an order for the logged-in user
+                order = Order.objects.create(
+                    buyer=request.user,  # Associate the order with the logged-in user
+                    product=product,
+                    quantity=quantity,
+                    total_price=product.price * quantity
+                )
+
+                # Update product stock
+                product.quantity -= quantity
                 product.save()
-                return JsonResponse({'success': True, 'new_quantity': product.quantity})
+
+                return JsonResponse({'success': True, 'new_quantity': product.quantity, 'order_id': order.id})
             else:
                 return JsonResponse({'success': False, 'error': 'Not enough stock'})
 
@@ -258,14 +273,16 @@ def buy_product(request):
     return JsonResponse({"success": False, "error": "Invalid request"})
 
 
+@login_required  # Ensure only authenticated users can access orders
 def get_orders(request):
-    orders = Order.objects.select_related('product').all()
+    # Fetch only the orders that belong to the logged-in user
+    orders = Order.objects.filter(buyer=request.user).select_related('product')
 
     order_list = []
     for order in orders:
         order_list.append({
-            "id": order.id,  # Add this line
-            "product_name": order.product.name,  # Ensure Product has a 'name' field
+            "id": order.id,  # Ensure order ID is included
+            "product_name": order.product.name,  # Ensure Product model has a 'name' field
             "quantity": order.quantity,
             "total_price": float(order.total_price),  # Convert Decimal to float
             "order_date": order.order_date.strftime("%Y-%m-%d %H:%M:%S")  # Format date
